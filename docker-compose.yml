@@ -2,18 +2,17 @@ version: '3.5'
 services:
   frontend:
     container_name: frontend
-    build:
-      context: ./frontend
+    build: ./frontend
     env_file:
       - ./frontend/.env.dev
     ports:
       - '3000:3000'
     volumes:
       - ./frontend:/app
+      - /app/node_modules
   backend:
     container_name: backend
-    build:
-      context: ./backend
+    build: ./backend
     env_file:
       - ./backend/.env.dev
     volumes:

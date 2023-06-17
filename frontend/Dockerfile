@@ -1,15 +1,12 @@
-FROM node:16
+FROM node:18
 
 WORKDIR /app
 
 COPY package*.json ./
 COPY yarn.lock ./
 
-RUN yarn global add typescript
 RUN yarn install --silent
 
 COPY . .
-
-EXPOSE $PORT
 
 CMD [ "yarn", "start" ]
