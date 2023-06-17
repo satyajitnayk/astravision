@@ -17,5 +17,21 @@ services:
       - ./backend/.env.dev
     volumes:
       - ./backend:/app
+    depends_on:
+      - mongodb
     ports:
       - '3001:3001'
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    volumes:
+      - ./data-node:/data/db
+    ports:
+      - '27017:27017'
+    command: mongod --noauth > /dev/null 2>&1
+    networks:
+      - webappnetwork
+networks:
+  webappnetwork:
+    driver: bridge
